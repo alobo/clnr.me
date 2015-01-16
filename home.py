@@ -1,6 +1,6 @@
 import tweepy
 import json
-from flask import Flask, session, redirect, request
+from flask import Flask, session, redirect, request, render_template
 
 app = Flask(__name__)
 
@@ -14,7 +14,8 @@ def login():
         auth = tweepy.OAuthHandler(app.config['CONSUMER_KEY'], app.config['CONSUMER_SECRET'])
         return redirect(auth.get_authorization_url(), code=302)
     else:
-        return 'Logged In!'
+        return render_template('/frontend/app/index.html')
+        #return 'Logged In!'
 
 @app.route('/logout')
 def logout():
